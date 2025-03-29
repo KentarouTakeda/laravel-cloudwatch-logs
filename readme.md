@@ -17,7 +17,7 @@ composer require pagevamp/laravel-cloudwatch-logs
 
 You can use laravel's default `\Log` class to use this
 
-```
+```php
 \Log::info('user logged in', ['id' => 123, 'name' => 'Naren']);
 ```
 
