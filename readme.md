@@ -1,16 +1,9 @@
 ## Logger for Aws Cloud Watch
 
-### Breaking Change for version 1.0
-
-When this package started, it started as a listener for log events and would only work with another channel.
-This package would listen to log events and just add extra log to cloud watch. So, you did not need to add cloudwatch as a `channel`.
-But after `1.0` it works as a custom driver.
-So, you MUST add `LOG_CHANNEL` as `cloudwatch` in your logging config for this to work going forward. 
-
 ### Installation
 
 ```
-composer require pagevamp/laravel-cloudwatch-logs
+composer require kentaroutakeda/laravel-cloudwatch-logs
 ```
 
 ### Example
@@ -30,25 +23,25 @@ So think about Logs:CreateLogGroup, Logs:DescribeLogGroups, Logs:CreateLogStream
 
 Config for logging is defined at `config/logging.php`. Add `cloudwatch` to the `channels` array
 
-```
+```php
 'channels' =>  [
     'cloudwatch' => [
-            'driver' => 'custom',
-            'name' => env('CLOUDWATCH_LOG_NAME', ''),
-            'region' => env('CLOUDWATCH_LOG_REGION', ''),
-            'credentials' => [
-                'key' => env('CLOUDWATCH_LOG_KEY', ''),
-                'secret' => env('CLOUDWATCH_LOG_SECRET', '')
-            ],
-            'stream_name' => env('CLOUDWATCH_LOG_STREAM_NAME', 'laravel_app'),
-            'retention' => env('CLOUDWATCH_LOG_RETENTION_DAYS', 14),
-            'group_name' => env('CLOUDWATCH_LOG_GROUP_NAME', 'laravel_app'),
-            'version' => env('CLOUDWATCH_LOG_VERSION', 'latest'),
-            'formatter' => \Monolog\Formatter\JsonFormatter::class,
-            'batch_size' => env('CLOUDWATCH_LOG_BATCH_SIZE', 10000),
-            'level' => env('CLOUDWATCH_LOG_LEVEL', 'info'),
-            'via' => \Pagevamp\Logger::class,
+        'driver' => 'custom',
+        'name' => env('CLOUDWATCH_LOG_NAME', ''),
+        'region' => env('CLOUDWATCH_LOG_REGION', ''),
+        'credentials' => [
+            'key' => env('CLOUDWATCH_LOG_KEY', ''),
+            'secret' => env('CLOUDWATCH_LOG_SECRET', '')
         ],
+        'stream_name' => env('CLOUDWATCH_LOG_STREAM_NAME', 'laravel_app'),
+        'retention' => env('CLOUDWATCH_LOG_RETENTION_DAYS', 14),
+        'group_name' => env('CLOUDWATCH_LOG_GROUP_NAME', 'laravel_app'),
+        'version' => env('CLOUDWATCH_LOG_VERSION', 'latest'),
+        'formatter' => \Monolog\Formatter\JsonFormatter::class,
+        'batch_size' => env('CLOUDWATCH_LOG_BATCH_SIZE', 10000),
+        'level' => env('CLOUDWATCH_LOG_LEVEL', 'info'),
+        'via' => \Pagevamp\Logger::class,
+    ],
 ]
 ```
 
