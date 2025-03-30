@@ -9,13 +9,17 @@ So, you MUST add `LOG_CHANNEL` as `cloudwatch` in your logging config for this t
 
 ### Installation
 
-`composer require pagevamp/laravel-cloudwatch-logs`
+```
+composer require pagevamp/laravel-cloudwatch-logs
+```
 
 ### Example
 
 You can use laravel's default `\Log` class to use this
 
-`\Log::info('user logged in', ['id' => 123, 'name' => 'Naren']);`
+```php
+\Log::info('user logged in', ['id' => 123, 'name' => 'Naren']);
+```
 
 ### Usage with AWS Lambda
 
@@ -40,8 +44,9 @@ Config for logging is defined at `config/logging.php`. Add `cloudwatch` to the `
             'retention' => env('CLOUDWATCH_LOG_RETENTION_DAYS', 14),
             'group_name' => env('CLOUDWATCH_LOG_GROUP_NAME', 'laravel_app'),
             'version' => env('CLOUDWATCH_LOG_VERSION', 'latest'),
-            'formatter' => \Monolog\Formatter\JsonFormatter::class,       
-            'batch_size' => env('CLOUDWATCH_LOG_BATCH_SIZE', 10000),    
+            'formatter' => \Monolog\Formatter\JsonFormatter::class,
+            'batch_size' => env('CLOUDWATCH_LOG_BATCH_SIZE', 10000),
+            'level' => env('CLOUDWATCH_LOG_LEVEL', 'info'),
             'via' => \Pagevamp\Logger::class,
         ],
 ]
