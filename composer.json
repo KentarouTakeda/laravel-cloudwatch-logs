@@ -1,5 +1,5 @@
 {
-    "name": "pagevamp/laravel-cloudwatch-logs",
+    "name": "kentaroutakeda/laravel-cloudwatch-logs",
     "description": "Laravel Adapter for AWS CloudWatch",
     "type": "library",
     "license": "MIT",
